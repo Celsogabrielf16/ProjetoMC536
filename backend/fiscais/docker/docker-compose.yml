@@ -1,0 +1,23 @@
+services:
+  fiscais_transparencia_postgresql:
+    container_name: fiscais-da-transparencia-postgresql
+    image: postgres:alpine
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=fiscais
+    volumes:
+      - ./src/main/resources/db/migration:/flyway/sql/schema
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:postgresql://db -schemas=public -user=user -password=password -connectRetries=5 migrate
+    volumes:
+      - ./src/main/resources/db/migration:/flyway/sql
+    depends_on:
+      - fiscais_transparencia_postgresql
+
+volumes:
+  postgres_local:
+    name: fiscais-da-transparencia-postgresql-volume
