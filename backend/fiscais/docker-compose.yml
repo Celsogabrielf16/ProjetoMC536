@@ -1,0 +1,16 @@
+services:
+  fiscais_transparencia_postgresql:
+    container_name: fiscais-da-transparencia-postgresql
+    image: postgres:alpine
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=fiscais
+    volumes:
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_local:
+    name: fiscais-da-transparencia-postgresql-volume
