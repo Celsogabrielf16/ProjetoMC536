@@ -9,14 +9,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=fiscais
     volumes:
-      - ./src/main/resources/db/migration:/flyway/sql/schema
-  flyway:
-    image: flyway/flyway
-    command: -url=jdbc:postgresql://db -schemas=public -user=user -password=password -connectRetries=5 migrate
-    volumes:
-      - ./src/main/resources/db/migration:/flyway/sql
-    depends_on:
-      - fiscais_transparencia_postgresql
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
 
 volumes:
   postgres_local:

@@ -1,0 +1,4 @@
+CREATE TABLE localizacao(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
