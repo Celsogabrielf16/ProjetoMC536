@@ -14,7 +14,6 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudId": "6728cedde2e2c04341fae909",
   "plugins": [
     {
       "plugin": "@nx/webpack/plugin",
