@@ -1,0 +1,12 @@
+{
+  "id": "12345",
+  "id_localizacao": "7890",
+  "data_inicio": "2024-01-01T00:00:00Z",
+  "data_previsao": "2024-12-31T00:00:00Z",
+  "data_conclusao": "2024-11-14T00:00:00Z",
+  "orcamento": 1000000.00,
+  "nome": "Reforma IC",
+  "descricao": "Reforma da fachada do prédio do IC-3",
+  "tipo": "Reforma",
+  "status": "Em andamento"
+}
