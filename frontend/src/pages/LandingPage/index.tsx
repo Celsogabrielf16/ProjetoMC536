@@ -6,7 +6,9 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <Header />
-      <h1>LandingPage</h1>
+      <div className='LandingPageMain'>
+        <h1>LandingPage</h1>
+      </div>
     </>
   );
 }
