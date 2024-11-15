@@ -1,3 +1,4 @@
 .header {
-    background-color: brown;
+    background-color: var(--cor-sky-blue);
+    font-family: var(--font-display);
 }
