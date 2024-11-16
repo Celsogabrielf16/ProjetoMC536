@@ -10,8 +10,8 @@
   --cor-deep-sky-blue: #00BFFF;
   --cor-light-red: #FF4D4D;
   --cor-light-pink: #FF6A6A;
-  --gradient-sky-deep-sky: linear-gradient(45deg, #00E5FF, #00BFFF);
-  --gradient-light-red-light-pink: linear-gradient(45deg, #FF4D4D, #FF6A6A);
+  --gradient-sky-deep-sky: linear-gradient(45deg, var(--cor-sky-blue), var(--cor-deep-sky-blue));
+  --gradient-light-red-light-pink: linear-gradient(45deg, var(--cor-light-red), var(--cor-light-pink));
 
   --font-display: 'Electrolize', 'Roboto', sans-serif;
   --font-main: 'Lexend', 'Roboto', sans-serif;

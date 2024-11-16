@@ -4,12 +4,14 @@ import './landingPage.css';
 import { ReactComponent as DownArrow } from "../../assets/icons/downArrow.svg";
 
 import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
 
 
 const LandingPage: React.FC = () => {
   return (
     <>
       <Header />
+      <div className='background-detail'>R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$</div>
       <main className='LandingPageMain'>
         <section className='banner'>
           <div className='banner__content'>
@@ -50,6 +52,7 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
