@@ -51,3 +51,13 @@ body {
 .moneyDetail {
   color: var(--cor-light-red);
 }
+
+body::-webkit-scrollbar{
+  background-color: var(--cor-dark);
+  width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background-color: var(--cor-charcoal);
+  border-radius: 3px;
+}

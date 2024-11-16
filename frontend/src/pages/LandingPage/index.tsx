@@ -110,7 +110,7 @@ const LandingPage: React.FC = () => {
         <section ref={refThird} className={`third-information ${isVisibleThird ? "animeLeft" : ""}`}>
           <div className='third-information__cards'>
             {isVisibleThird && (
-              <BarChart title={ lineChartData.title} label1={ lineChartData.label1} label2={ lineChartData.label2} labels={ lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2} duration={5000} delay={800}/>
+              <BarChart title={"Vitor x Celso"} label1={"Vitor"} label2={"Celso"} labels={lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2} duration={5000} delay={800}/>
             )}
           </div>
           <div className='third-information__text'>
