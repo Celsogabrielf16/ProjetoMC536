@@ -23,8 +23,14 @@
 }
 
 .banner__content {
-    margin-top: 150px;
+    margin-top: 160px;
     width: 1400px;
+    display: grid;
+    grid-template-columns: 55% 45%;
+}
+
+.banner__title {
+    margin-top: 48px;
 }
 
 .banner__title h3 {
@@ -42,6 +48,24 @@
     font-size: var(--font-size-detail-landing-page);
 }
 
+.banner__image {
+    position: relative;
+}
+
+.banner__image .line-chart {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    z-index: 2;
+}
+
+.banner__image .bar-chart {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}
+
 .banner__arrow {
     width: 100%;
     position: absolute;
@@ -51,6 +75,16 @@
     bottom: 20px;
     left: 0;
     margin: 0 auto;
+    animation: arrowAnimation 2s infinite alternate ease-in-out;
+}
+
+@keyframes arrowAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+    transform: translateY(10px);
+    }
 }
 
 .first-information {

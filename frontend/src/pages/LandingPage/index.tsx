@@ -7,6 +7,7 @@ import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Card from 'src/components/Card';
 import LineChart from 'src/components/LineChart';
+import BarChart from 'src/components/BarChart';
 
 const LandingPage: React.FC = () => {
   const cardData = {
@@ -34,7 +35,14 @@ const LandingPage: React.FC = () => {
               <h3>Transparência em Obras da Unicamp</h3>
               <h1>Fi<b className='moneyDetail'>$</b>cais da Tran<b className='moneyDetail'>$</b>parência</h1>
             </div>
-            <div className='banner__image'></div>
+            <div className='banner__image'>
+              <div className="bar-chart">
+                <BarChart title={ lineChartData.title} label1={ lineChartData.label1} label2={ lineChartData.label2} labels={ lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2}/>
+              </div>
+              <div className="line-chart">
+                <LineChart title={ lineChartData.title} label1={ lineChartData.label1} label2={ lineChartData.label2} labels={ lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2} />
+              </div>
+            </div>
             <div className='banner__arrow'><DownArrow /></div>
           </div>
         </section>
@@ -59,7 +67,7 @@ const LandingPage: React.FC = () => {
         </section>
         <section className='third-information'>
           <div className='third-information__cards'>
-            <LineChart title={ lineChartData.title} label1={ lineChartData.label1} label2={ lineChartData.label2} labels={ lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2} />
+            <BarChart title={ lineChartData.title} label1={ lineChartData.label1} label2={ lineChartData.label2} labels={ lineChartData.labels} data1={ lineChartData.data1} data2={ lineChartData.data2}/>
           </div>
           <div className='third-information__text'>
             <h3 className='information__title'>Fi<b className='moneyDetail'>$</b>calização Popular: Um Direito</h3>
