@@ -1,5 +1,6 @@
 .HeaderComponent {
     width: 100%;
+    height: 90px;
     padding: 32px 48px;
     position: fixed;
     display: flex;

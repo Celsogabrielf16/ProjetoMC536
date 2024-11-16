@@ -1,3 +1,38 @@
 .LandingPageMain {
-    padding-top: 150px;
+    padding-top: 90px;
+}
+
+.banner {
+    width: 100vw;
+    height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.banner__content {
+    margin-top: 150px;
+    width: 1400px;
+}
+
+.banner__title h3 {
+    font-family: var(--font-main);
+    font-size: var(--font-size-title);
+}
+
+.banner__title h1 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-logo-landing-page);
+    font-weight: var(--font-weight-bold);
+}
+
+.banner__arrow {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    left: 0;
+    margin: 0 auto;
 }
