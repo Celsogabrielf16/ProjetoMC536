@@ -12,6 +12,10 @@
     font-size: var(--font-size-logo);
 }
 
+.logo .moneyDetail {
+    font-size: var(--font-size-paragraph);
+}
+
 nav {
     display: flex;
     gap: 32px;

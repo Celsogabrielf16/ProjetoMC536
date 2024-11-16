@@ -22,6 +22,10 @@
     line-height: 1.6rem;
 }
 
+.information-title .moneyDetail {
+    font-size: var(--font-size-detail);
+}
+
 .information-text {
     margin-top: 16px;
     display: flex;

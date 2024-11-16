@@ -5,6 +5,7 @@
   --cor-gray: #C5C7D1;
   --cor-dark-gray: #6A6A6A;
   --cor-charcoal: #1E1E1F;
+  --cor-dark: #101011;
   --cor-turquoise: #20F4CF;
   --cor-sky-blue: #00E5FF;
   --cor-deep-sky-blue: #00BFFF;
@@ -16,11 +17,14 @@
   --font-display: 'Electrolize', 'Roboto', sans-serif;
   --font-main: 'Lexend', 'Roboto', sans-serif;
 
+  --font-size-detail: 0.8rem;
   --font-size-base: 16px;
+  --font-size-paragraph: 1rem;
+  --font-size-subtitle: 1.2rem;
   --font-size-logo: 1.4rem;
   --font-size-title: 1.6rem;
+  --font-size-detail-landing-page: 6rem;
   --font-size-logo-landing-page: 8rem;
-  --font-size-paragraph: 1rem;
 
   --font-weight-base: 400;
   --font-weight-bold: 600;
@@ -35,7 +39,7 @@
 }
 
 body {
-  background-color: var(--cor-charcoal);
+  background-color: var(--cor-dark);
   color: var(--cor-light-gray);
   font-family: var(--font-main);
   font-size: var(--font-size-base);

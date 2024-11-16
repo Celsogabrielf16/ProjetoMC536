@@ -5,13 +5,18 @@ import { ReactComponent as DownArrow } from "../../assets/icons/downArrow.svg";
 
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-
+import Card from 'src/components/Card';
 
 const LandingPage: React.FC = () => {
+  const data = {
+    title: "Gasto Planejado em 2024",
+    value: 22292150.19,
+    relativeValue: 10000000.00
+  }
+
   return (
     <>
       <Header />
-      <div className='background-detail'>R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$R$</div>
       <main className='LandingPageMain'>
         <section className='banner'>
           <div className='banner__content'>
@@ -27,10 +32,10 @@ const LandingPage: React.FC = () => {
           <h3 className='information__title'>Ace<b className='moneyDetail'>$$</b>o Fácil a Dados Públicos</h3>
           <p className='information__description'>Exibir dados de forma clara permite que todos compreendam o andamento de projetos públicos. Na Unicamp, isso fortalece a gestão participativa e promove o diálogo com a sociedade, facilitando que qualquer cidadão fiscalize e contribua para uma gestão eficiente.</p>
           <div className='first-information__cards'>
-            <div>Card 1</div>
-            <div>Card 2</div>
-            <div>Card 3</div>
-            <div>Card 4</div>
+            <Card title={ data.title } value={ data.value } relativeValue={ data.relativeValue }/>
+            <Card title={ data.title } value={ data.value } relativeValue={ data.relativeValue }/>
+            <Card title={ data.title } value={ data.value } relativeValue={ 250000000 }/>
+            <Card title={ data.title } value={ data.value } relativeValue={ data.relativeValue }/>
           </div>
         </section>
         <section className='second-information'>

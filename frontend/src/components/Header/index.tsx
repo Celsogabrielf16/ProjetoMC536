@@ -3,7 +3,7 @@ import './header.css';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const logado = false;
+  const logado: boolean = false;
 
   return (
     <header className='HeaderComponent'>
