@@ -1,0 +1,80 @@
+.container {
+    background-image: url(../../assets/img/RSDetail.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: auto;
+    text-align: center;
+
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    border-color: var(--cor-charcoal);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 270px;
+    margin-bottom: 0;
+    font-size: 16px;
+    box-shadow: none;
+}
+
+input::placeholder {
+    color: var(--cor-light-gray);
+    font-size: 15px;
+}
+
+.dadosEntrada {
+    position: relative;
+    width: 270px;
+}
+
+.iconEye {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-65%);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+
+button {
+    width: 270px;
+    padding: 10px;
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    border: 1px solid var(--cor-light-pink);
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--cor-light-pink);
+    color: var(--cor-light-gray);
+}
+
+.highlight {
+    color: var(--cor-light-pink);
+}
