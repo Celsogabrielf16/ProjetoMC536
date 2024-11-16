@@ -1,0 +1,45 @@
+.CardComponent {
+    width: 290px;
+    background-color: var(--cor-charcoal);
+    padding: 18px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+    box-shadow: 4px 4px 10px rgba(255, 77, 77, 0.05);
+}
+
+.card__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-base);
+}
+
+.card__title .moneyDetail {
+    font-size: var(--font-size-detail);
+}
+
+.card__value {
+    font-size: var(--font-size-subtitle);
+}
+
+.card__relative-value {
+    display: flex;
+    gap: 12px
+}
+
+.card__relative-value .porcentage {
+    color: var(--cor-light-pink);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card__relative-value .porcentage--green {
+    color: var(--cor-turquoise);
+}
+
+.card__relative-value .value {
+    color: var(--cor-gray);
+    font-size: var(--font-size-base);
+}
