@@ -1,0 +1,16 @@
+.LineChartComponent {
+    width: 500px;
+    background-color: var(--cor-charcoal);
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba(255, 77, 77, 0.05);
+    color: var(--cor-light-gray);
+}
+
+.line-chart__title {
+    margin: 0 0 12px 0;
+}
+
+.line-chart__title .moneyDetail {
+    font-size: var(--font-size-base);
+}
