@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <div className="footer__informations">
         <div className="information-project">
           <h1 className='logo'>Fi<b className='moneyDetail'>$</b>cais da Tran<b className='moneyDetail'>$</b>parência</h1>
-          <p className="information-description">Site de avaliações de filmes implementado Orientado a Objetos, desenvolvido como projeto final do curso de Programação Orientada a Objetos, do Bacharelado em Ciência da Computação na Universidade Estadual de Campinas - UNICAMP</p>
+          <p className="information-description">Site de que visa promover a transparência sobre obras na UNICAMP, desenvolvido como projeto do curso de Banco de Dados: Teoria e Prática, do Bacharelado em Ciência da Computação na Universidade Estadual de Campinas - UNICAMP</p>
         </div>
         <div className="information-developers">
             <h4 className="information-title">De<b className='moneyDetail'>$</b>envolvedores</h4>

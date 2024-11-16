@@ -2,7 +2,7 @@ import React from "react";
 import './lineChart.css'
 
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Chart } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -11,8 +11,10 @@ type LineChartProps = {
     label1: string;
     label2: string;
     labels: string[];
-    data1: number[]
-    data2: number[]
+    data1: number[];
+    data2: number[];
+    duration: number;
+    delay: number;
 }
 
 const formatStringH3 = (string: string): JSX.Element => {
@@ -26,7 +28,7 @@ const formatStringH3 = (string: string): JSX.Element => {
     </h3>
 }
 
-const LineChart: React.FC<LineChartProps> = ({title, label1, label2, labels, data1, data2}) => {
+const LineChart: React.FC<LineChartProps> = ({title, label1, label2, labels, data1, data2, duration, delay}) => {
     const data = {
         labels: labels,
         datasets: [
@@ -67,6 +69,10 @@ const LineChart: React.FC<LineChartProps> = ({title, label1, label2, labels, dat
     
       const options = {
         responsive: true,
+        animation: {
+          duration: duration,
+          delay: delay,
+        },
         plugins: {
           legend: {
             position: 'top' as const, 

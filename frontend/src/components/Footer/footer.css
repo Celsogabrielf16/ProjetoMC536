@@ -1,7 +1,7 @@
 .FooterComponent {
     max-width: 1600px;
     padding: 0 32px;
-    margin: 0 auto;
+    margin: 64px auto 0 auto;
 }
 
 .footer__detail {
@@ -20,6 +20,8 @@
 .information-description {
     margin-top: 16px;
     line-height: 1.6rem;
+    font-size: var(--font-size-base);
+    color: var(--cor-gray);
 }
 
 .information-title .moneyDetail {
@@ -27,6 +29,8 @@
 }
 
 .information-text {
+    font-size: var(--font-size-base);
+    color: var(--cor-gray);
     margin-top: 16px;
     display: flex;
     flex-direction: column;

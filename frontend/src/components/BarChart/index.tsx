@@ -11,8 +11,10 @@ type BarChartProps = {
     label1: string;
     label2: string;
     labels: string[];
-    data1: number[]
-    data2: number[]
+    data1: number[];
+    data2: number[];
+    duration: number;
+    delay: number;
 }
 
 const formatStringH3 = (string: string): JSX.Element => {
@@ -26,7 +28,7 @@ const formatStringH3 = (string: string): JSX.Element => {
     </h3>
 }
 
-const BarChart: React.FC<BarChartProps> = ({title, label1, label2, labels, data1, data2}) => {
+const BarChart: React.FC<BarChartProps> = ({title, label1, label2, labels, data1, data2, duration, delay}) => {
     const data = {
         labels: labels,
         datasets: [
@@ -67,6 +69,10 @@ const BarChart: React.FC<BarChartProps> = ({title, label1, label2, labels, data1
 
   const options = {
     responsive: true,
+    animation: {
+      duration: duration,
+      delay: delay,
+    },
     scales: {
       x: {
         beginAtZero: true,
