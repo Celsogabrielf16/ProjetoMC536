@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import SubmitProject from './pages/SubmitProject';
+import SubmitUpdate from './pages/SubmitUpdate';
 
 const ROUTES: RouteObject[] = [
   {
@@ -31,6 +32,10 @@ const ROUTES: RouteObject[] = [
   {
     path: '/submit-project',
     Component: SubmitProject,
+  },
+  {
+    path: '/submit-update',
+    Component: SubmitUpdate,
   },
 ];
 
