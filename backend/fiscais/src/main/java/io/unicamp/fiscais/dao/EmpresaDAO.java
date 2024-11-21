@@ -20,6 +20,11 @@ public class EmpresaDAO {
             from empresa e
             where e.cnpj = :cnpj
             """;
+    private final String SELECT_EMPRESA_BY_EMAIL = """
+            select *
+            from empresa e
+            where e.email = :email
+            """;
     private final String INSERT_EMPRESA = """ 
             insert into
             empresa ( cnpj, nome, email, senha )
@@ -46,5 +51,15 @@ public class EmpresaDAO {
         try(Stream<Empresa> empresaStream = rwJdbcTemplate.queryForStream(SELECT_EMPRESA_BY_CNPJ, params, empresaRowMapper)) {
             return empresaStream.findFirst().orElseThrow(ObjectNotFoundException::new);
         }
+    }
+    public Empresa selectEmpresaByEmail(String email) {
+        final Map<String, Object> params = Map.of("email", email);
+        try(Stream<Empresa> empresaStream = rwJdbcTemplate.queryForStream(SELECT_EMPRESA_BY_EMAIL, params, empresaRowMapper)) {
+            return empresaStream.findFirst().orElseThrow(ObjectNotFoundException::new);
+        }
+    }
+
+    public boolean isSenhaCorreta(String email, String senha) {
+        return selectEmpresaByEmail(email).getSenha().equals(senha);
     }
 }
