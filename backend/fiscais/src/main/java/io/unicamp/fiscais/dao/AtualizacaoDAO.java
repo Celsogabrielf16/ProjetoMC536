@@ -44,7 +44,7 @@ public class AtualizacaoDAO {
         }
     }
 
-    public Atualizacao selectAtualizacaaById(String id) {
+    public Atualizacao selectAtualizacaoById(String id) {
         final Map<String, Object> params = Map.of("id", id);
         try(Stream<Atualizacao> atualizacaoStream = rwJdbcTemplate.queryForStream(SELECT_ATUALIZACAO_BY_ID, params, atualizacaoRowMapper)) {
             return atualizacaoStream.findFirst().orElseThrow(ObjectNotFoundException::new);
