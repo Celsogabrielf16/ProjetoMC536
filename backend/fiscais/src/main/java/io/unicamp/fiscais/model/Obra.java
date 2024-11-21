@@ -6,7 +6,7 @@ import lombok.Data;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Builder
 @AllArgsConstructor
@@ -35,6 +35,7 @@ public class Obra {
 
     private final String descricao;
 
+    @NotNull
     private final String tipo;
 
     @NotNull

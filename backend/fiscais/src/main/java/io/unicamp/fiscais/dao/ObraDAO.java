@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 @Slf4j
 @RequiredArgsConstructor
 public class ObraDAO {
-    private final NamedParameterJdbcTemplate roJdbcTemplate;
     private final NamedParameterJdbcTemplate rwJdbcTemplate;
     private final ObraRowMapper obraRowMapper;
     private final String SELECT_OBRA_BY_ID = """
@@ -23,7 +22,7 @@ public class ObraDAO {
             """;
     private final String INSERT_OBRA = """ 
             insert into
-            obras ( id, id_localizacao, data_inicio,  data_previsao, data_conclusao, orcamento, nome, descricao, tipo, status )
+            obra ( id, id_localizacao, data_inicio,  data_previsao, data_conclusao, orcamento, nome, descricao, tipo, status )
             values ( :id, :order_id, :data_inicio,  :data_previsao, :data_conclusao, :orcamento, :nome, :descricao, :tipo, :status )
             """;
 
@@ -50,7 +49,7 @@ public class ObraDAO {
 
     public Obra selectObraById(String id) {
         final Map<String, Object> params = Map.of("id", id);
-        try(Stream<Obra> obraStream = roJdbcTemplate.queryForStream(SELECT_OBRA_BY_ID, params, obraRowMapper)) {
+        try(Stream<Obra> obraStream = rwJdbcTemplate.queryForStream(SELECT_OBRA_BY_ID, params, obraRowMapper)) {
             return obraStream.findFirst().orElseThrow(ObjectNotFoundException::new);
         }
     }
