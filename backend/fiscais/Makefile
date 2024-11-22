@@ -1,5 +1,6 @@
-infra-local-start: ## Run infrastructure locally
+start: ## Run locally
 	docker-compose -f docker-compose.yml up -d
+	./mvnw spring-boot:run
 
-infra-local-stop: ## Stop infrastructure locally
+stop: ## Stop locally
 	docker-compose -f docker-compose.yml down
