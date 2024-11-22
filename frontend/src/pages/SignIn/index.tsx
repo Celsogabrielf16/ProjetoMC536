@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ReactComponent as ClosedEye } from '../../assets/icons/closedEye.svg';
 import { ReactComponent as OpenEye} from '../../assets/icons/openEye.svg';
 import './signIn.css';
+import { useNavigate } from 'react-router-dom';
 import Header from 'src/components/Header';
 import axios from 'axios';
 
@@ -10,6 +11,7 @@ export function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate(); 
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -20,21 +22,22 @@ export function SignIn() {
 
         try {
             // Envia os dados para o backend (alterar URL para o endpoint real)
-            const response = await axios.post('http://localhost:0000/exemplo', {
-                email: email,
-                password: password,
+            const response = await axios.get('http://localhost:8080/empresas/senha', {
+
+                params: {
+                    email: email, 
+                    senha: password, 
+                },
             });
 
-            if (response.data.success) {
+            if (response.data) {
 
                 // 'Login bem-sucedido!'
+                localStorage.setItem('authToken', JSON.stringify(true));
 
 
-                localStorage.setItem('authToken', response.data.token); // Armazena o token no localStorage
-
-
-                // redirecionar o usuário
-
+                // Redireciona o usuário para a página inicial (home)
+                navigate('../Home/index.tsx');
 
             } else {
                 setError('Credenciais inválidas!');
@@ -43,14 +46,6 @@ export function SignIn() {
             setError('Erro ao conectar com o servidor.');
         }
     };
-
-    // Função para lidar com o logout
-    const handleLogout = () => {
-        // Remove o token do LocalStorage ao fazer logout
-        localStorage.removeItem('authToken');
-
-    };
-
 
     return (
       <> 
