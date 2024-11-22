@@ -2,10 +2,13 @@ package io.unicamp.fiscais.dao.rowmapper;
 
 import io.unicamp.fiscais.model.Atualizacao;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
+@Component
 public class AtualizacaoRowMapper implements RowMapper<Atualizacao> {
     @Override
     public Atualizacao mapRow(ResultSet rs, int rowNum) throws SQLException {

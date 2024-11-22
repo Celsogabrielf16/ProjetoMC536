@@ -1,17 +1,20 @@
 package io.unicamp.fiscais.dao;
 
+import io.unicamp.fiscais.controller.payload.model.EmpresaPayload;
 import io.unicamp.fiscais.dao.rowmapper.EmpresaRowMapper;
 import io.unicamp.fiscais.exceptions.ObjectNotFoundException;
 import io.unicamp.fiscais.model.Empresa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor
+@Repository
 public class EmpresaDAO {
     private final NamedParameterJdbcTemplate rwJdbcTemplate;
     private final EmpresaRowMapper empresaRowMapper;
@@ -31,7 +34,7 @@ public class EmpresaDAO {
             values ( :cnpj, :nome, :email, :senha )
             """;
 
-    public void insert (Empresa empresa) {
+    public Empresa insert (EmpresaPayload empresa) {
         final Map<String, Object> params = Map.of(
                 "cnpj", empresa.getCnpj(),
                 "nome", empresa.getNome(),
@@ -41,8 +44,10 @@ public class EmpresaDAO {
 
         try {
             rwJdbcTemplate.update(INSERT_EMPRESA, params);
+            return new Empresa(empresa.getCnpj(), empresa.getNome(), empresa.getEmail(), empresa.getSenha());
         } catch (Exception e) {
             log.error("[POSTGRES] Failure to insert obra {}", empresa.getCnpj());
+            throw e;
         }
     }
 

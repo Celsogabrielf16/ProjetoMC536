@@ -1,21 +1,20 @@
-package io.unicamp.fiscais.model;
+package io.unicamp.fiscais.controller.payload.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 import java.sql.Date;
-import java.util.UUID;
 
 @Builder
 @AllArgsConstructor
 @Getter
 @Data
-public class Obra {
+public class ObraPayload {
     @NotNull
-    private final String id;
+    private String id;
 
     @NotNull
     private final String id_localizacao;

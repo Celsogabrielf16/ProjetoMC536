@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Fiscais da Transparencia
+  datasource:
+    hikari:
+      autoCommit: false
+      connectionTimeout: 10000
+      leakDetectionThreshold: 2000
+      maximumPoolSize: 20
+      poolName: Datasource-RW
+      data-source-properties:
+        useConfigs: maxPerformance
+        rewriteBatchedStatements: true
+    password: password
+    testWhileIdle: true
+    url: jdbc:postgresql://localhost:5434/fiscais?prepareThreshold=0
+    username: user
+    validationQuery: SELECT 1;
+  flyway:
+    enabled: false
+  jackson:
+    default-property-inclusion: non_null
+  jdbc:
+    getParameterType:
+      ignore: true
+    template:
+      query-timeout: 10

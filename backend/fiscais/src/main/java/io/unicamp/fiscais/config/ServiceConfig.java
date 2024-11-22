@@ -11,6 +11,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 public class ServiceConfig {
     @Bean
     public ObraDAO obraDAO(@Qualifier("rwJdbcTemplate") NamedParameterJdbcTemplate jdbcTemplate) {
-        return new ObraDAO(null, jdbcTemplate, new ObraRowMapper());
+        return new ObraDAO(jdbcTemplate, new ObraRowMapper());
     }
 }
