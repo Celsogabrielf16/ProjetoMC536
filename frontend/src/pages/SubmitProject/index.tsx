@@ -17,6 +17,7 @@ export function SubmitProject() {
     const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
     const [selectedStatus, setSelectedStatus] = useState<string>('Status');
     const [selectedType, setSelectedType] = useState<string>('Tipo de obra');
+    const [error, setError] = useState('');
 
 
     const toggleStatusDropdown = () => {
@@ -37,34 +38,44 @@ export function SubmitProject() {
         setIsTypeDropdownOpen(false);
     };
 
-    // Função para capturar os valores ao enviar o formulário
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
 
-        const formData = {
-            idLocation,
-            startDate,
-            expectedDate,
-            budget,
-            name,
-            selectedStatus,
-            selectedType,
-            description,
+        const convertDateToISO = (date: string) => {
+            const [day, month, year] = date.split('/');
+            return `${year}-${month}-${day}`;
         };
 
-        //console.log('Form Data:', formData);
+        const startDateFormatted = convertDateToISO(startDate);
+        const expectedDateFormatted = convertDateToISO(expectedDate);
 
+        const formData = {
+            idLocation,
+            startDate: startDateFormatted,
+            expectedDate: expectedDateFormatted,
+            budget: parseFloat(budget),
+            name,
+            status: selectedStatus, 
+            type: selectedType,
+            description,
+        };
+    
         try {
-            const response = await axios.post('http://localhost:0000/exemplo', formData);
+            const response = await axios.post('http://localhost:8080/obras', formData);
+    
+            if (response.status === 200) {
+                alert('Obra cadastrada com sucesso!');
+                
+            } else {
+                setError('Erro ao cadastrar a obra.');
 
-            //'Projeto cadastrado com sucesso!'
+            }
         } catch (error) {
-
-            //'Ocorreu um erro ao cadastrar o projeto. Tente novamente.'
+            setError('Erro ao cadastrar a obra.');
         }
     };
-
+    
     return (
         <> 
         <Header />
