@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
+import Details from './pages/Details';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -13,6 +14,10 @@ const ROUTES: RouteObject[] = [
   {
     path: '/home',
     Component: Home,
+  },
+  {
+    path: '/details/:workId',
+    Component: Details,
   },
   {
     path: '/sign-in',
