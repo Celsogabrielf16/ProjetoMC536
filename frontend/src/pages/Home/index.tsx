@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
@@ -10,9 +11,15 @@ import Card from 'src/components/Card';
 import LineChart from 'src/components/LineChart';
 import LocalizationTable from 'src/components/LocalizationTable';
 import BarChart from 'src/components/BarChart';
-import FilterModal from 'src/components/FilterModal';
+import FilterModal, { SchemaType } from 'src/components/FilterModal';
+import List from './List';
 
 const Home: React.FC = () => {
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+
+  const [filters, setFilters] = useState<SchemaType | null>(null);
+  console.log(filters);
+
   const cardData1 = {
     title: 'Gasto Planejado em 2024',
     value: 22292150.19,
@@ -51,87 +58,104 @@ const Home: React.FC = () => {
       <Header />
       <Styled.Wrapper>
         <Styled.Row>
-          <Styled.Title>
-            Vi<b>$</b>ão Geral das Obras
-          </Styled.Title>
-          <Styled.FilterButton>
+          {filters ? (
+            <Styled.Title withP>
+              Re<b>$</b>ultado da Bu<b>$</b>ca
+              <p>N Obras Encontradas</p>
+            </Styled.Title>
+          ) : (
+            <Styled.Title>
+              Vi<b>$</b>ão Geral das Obras
+            </Styled.Title>
+          )}
+          <Styled.FilterButton onClick={() => setIsFilterModalOpen(true)}>
             <img src={filterIcon} width="16px" height="16px" />
             Filtrar por
           </Styled.FilterButton>
         </Styled.Row>
 
-        <FilterModal isOpen onClose={() => {}} />
+        <FilterModal
+          isOpen={isFilterModalOpen}
+          onClose={() => setIsFilterModalOpen(false)}
+          onSaveFilters={(data) => setFilters(data)}
+        />
 
-        <Styled.Row>
-          <Card
-            title={cardData1.title}
-            value={cardData1.value}
-            relativeValue={cardData1.relativeValue}
-          />
-          <Card
-            title={cardData2.title}
-            value={cardData2.value}
-            relativeValue={cardData2.relativeValue}
-          />
-          <Card
-            title={cardData1.title}
-            value={cardData1.value}
-            relativeValue={250000000}
-          />
-          <Card
-            title={cardData2.title}
-            value={cardData2.value}
-            relativeValue={cardData2.relativeValue}
-          />
-        </Styled.Row>
-        <Styled.Row>
-          <LineChart
-            title={lineChartData.title}
-            label1={lineChartData.label1}
-            label2={lineChartData.label2}
-            labels={lineChartData.labels}
-            data1={lineChartData.data1}
-            data2={lineChartData.data2}
-            duration={5000}
-            delay={800}
-            width="800px"
-          />
-          <LocalizationTable
-            localizations={{
-              IC: 9,
-              IFGW: 2,
-              IMECC: 4,
-              IQ: 5,
-              FEA: 6,
-              FEEC: 8,
-              IFCH: 6,
-            }}
-          />
-        </Styled.Row>
-        <Styled.Row>
-          <LocalizationTable
-            localizations={{
-              IC: 9,
-              IFGW: 2,
-              IMECC: 4,
-              IQ: 5,
-              FEA: 6,
-              FEEC: 8,
-              IFCH: 6,
-            }}
-          />
-          <BarChart
-            title={lineChartData.title}
-            label1={lineChartData.label1}
-            label2={lineChartData.label2}
-            labels={lineChartData.labels}
-            data1={lineChartData.data1}
-            data2={lineChartData.data2}
-            duration={5000}
-            delay={800}
-            width="800px"
-          />
-        </Styled.Row>
+        {!filters ? (
+          <>
+            <Styled.Row>
+              <Card
+                title={cardData1.title}
+                value={cardData1.value}
+                relativeValue={cardData1.relativeValue}
+              />
+              <Card
+                title={cardData2.title}
+                value={cardData2.value}
+                relativeValue={cardData2.relativeValue}
+              />
+              <Card
+                title={cardData1.title}
+                value={cardData1.value}
+                relativeValue={250000000}
+              />
+              <Card
+                title={cardData2.title}
+                value={cardData2.value}
+                relativeValue={cardData2.relativeValue}
+              />
+            </Styled.Row>
+            <Styled.Row>
+              <LineChart
+                title={lineChartData.title}
+                label1={lineChartData.label1}
+                label2={lineChartData.label2}
+                labels={lineChartData.labels}
+                data1={lineChartData.data1}
+                data2={lineChartData.data2}
+                duration={5000}
+                delay={800}
+                width="800px"
+              />
+              <LocalizationTable
+                localizations={{
+                  IC: 9,
+                  IFGW: 2,
+                  IMECC: 4,
+                  IQ: 5,
+                  FEA: 6,
+                  FEEC: 8,
+                  IFCH: 6,
+                }}
+              />
+            </Styled.Row>
+            <Styled.Row>
+              <LocalizationTable
+                localizations={{
+                  IC: 9,
+                  IFGW: 2,
+                  IMECC: 4,
+                  IQ: 5,
+                  FEA: 6,
+                  FEEC: 8,
+                  IFCH: 6,
+                }}
+              />
+              <BarChart
+                title={lineChartData.title}
+                label1={lineChartData.label1}
+                label2={lineChartData.label2}
+                labels={lineChartData.labels}
+                data1={lineChartData.data1}
+                data2={lineChartData.data2}
+                duration={5000}
+                delay={800}
+                width="800px"
+              />
+            </Styled.Row>
+          </>
+        ) : (
+          <List works={['', '']} />
+        )}
       </Styled.Wrapper>
       <Footer />
     </>
