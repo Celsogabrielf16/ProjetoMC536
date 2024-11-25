@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -29,6 +31,13 @@ public class ObraDAO {
             obra ( id, id_localizacao, data_inicio,  data_previsao, data_conclusao, orcamento, nome, descricao, tipo, status )
             values ( :id, :order_id, :data_inicio,  :data_previsao, :data_conclusao, :orcamento, :nome, :descricao, :tipo, :status )
             """;
+
+    private static final String SELECT_ALL_OBRAS = "SELECT * FROM obra";
+
+    public List<Obra> selectAllObras() {
+        return rwJdbcTemplate.query(SELECT_ALL_OBRAS, obraRowMapper);
+    }
+
 
     public Obra insert (ObraPayload obra) {
         final Map<String, Object> params = Map.of(

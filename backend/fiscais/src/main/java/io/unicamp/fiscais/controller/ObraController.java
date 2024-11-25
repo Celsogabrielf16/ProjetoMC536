@@ -6,12 +6,19 @@ import io.unicamp.fiscais.model.Obra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/obras")
 public class ObraController {
 
     @Autowired
     private ObraDAO obraDAO;
+
+    @GetMapping
+    public List<Obra> getAllObras() {
+        return obraDAO.selectAllObras();
+    }
 
     @GetMapping("/{id}")
     public Obra getObraById(@PathVariable String id) {
