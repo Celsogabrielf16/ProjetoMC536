@@ -10,7 +10,12 @@ const Header: React.FC = () => {
       <Link to="/"><h3 className='logo'>Fi<b className='moneyDetail'>$</b>cais da Tran<b className='moneyDetail'>$</b>parência</h3></Link>
       <nav>
         <Link to="/home" >Visão Geral</Link>
-        {logado ? (<Link to="/home" >Nome Usuario</Link>) : <Link to="/sign-in" >Entrar</Link>}
+        {logado ? (
+          <>
+            <Link to="/submit-update" >Inserir Atualização</Link>
+            <Link to="/submit-project" >Cadastrar Obra</Link>
+          </>
+        ) : <Link to="/sign-in" >Entrar</Link>}
       </nav>
     </header>
   )

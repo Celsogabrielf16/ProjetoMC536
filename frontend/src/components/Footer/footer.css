@@ -2,6 +2,7 @@
     max-width: 1600px;
     padding: 0 32px;
     margin: 64px auto 0 auto;
+    bottom: 0;
 }
 
 .footer__detail {

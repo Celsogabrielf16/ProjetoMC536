@@ -1,0 +1,182 @@
+.container {
+    background-image: url(../../assets/img/RSDetail.jpg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    border-color: var(--cor-charcoal);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+    width: 270px;
+    margin-bottom: 0;
+    font-size: 16px;
+    box-shadow: none;
+}
+
+input::placeholder {
+    color: var(--cor-light-gray);
+    font-size: 15px;
+}
+
+.iconEye {
+    position: absolute;
+    right: 10px;
+    top: 65%;
+    transform: translateY(-65%);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+
+.dadosEntrada {
+    width: 270px;
+    position: relative;
+}
+
+.select-container {
+    position: relative;
+    width: 100%;
+}
+
+.dadosEntrada select {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: var(--cor-dark);
+    border: 1px solid var(--cor-charcoal);
+    color: var(--cor-light-gray);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    padding-right: 40px;
+}
+
+.select-container::after {
+    content: url('../../assets/icons/downArrowChoice.svg');
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--cor-light-gray);
+    pointer-events: none;
+    background-color: var(--cor-dark);
+    padding: 3px;
+    border-radius: 3px;
+    
+}
+
+.select-container:hover::after {
+    background-color: var(--cor-light-gray);
+}
+
+select option {
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    padding: 10px;
+}
+
+select option:hover {
+    background-color: var(--cor-light-pink);
+    color: var(--cor-dark);
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 270px;
+}
+
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    border: 1px solid var(--cor-charcoal);
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown-btn::after {
+    content: url('../../assets/icons/downArrowChoice.svg');
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.dropdown-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-dark);
+    border: 1px solid var(--cor-charcoal);
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.dropdown-option {
+    padding: 10px;
+    color: var(--cor-light-gray);
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: var(--cor-light-pink);
+    color: var(--cor-dark);
+}
+
+.custom-dropdown:hover .dropdown-list {
+    display: block;
+}
+
+button {
+    width: 270px;
+    padding: 10px;
+    background-color: var(--cor-dark);
+    color: var(--cor-light-gray);
+    border: 1px solid var(--cor-light-pink);
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--cor-light-pink);
+    color: var(--cor-light-gray);
+}
+
+.highlight {
+    color: var(--cor-light-pink);
+}

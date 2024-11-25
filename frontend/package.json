@@ -9,11 +9,17 @@
   },
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "jotai": "^2.10.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.53.2",
     "react-is": "18.3.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.28.0",
-    "styled-components": "5.3.6"
+    "styled-components": "5.3.6",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -39,6 +45,7 @@
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
     "@types/react-is": "18.3.0",
+    "@types/react-modal": "^3.16.3",
     "@types/styled-components": "5.1.26",
     "babel-jest": "^29.7.0",
     "babel-plugin-styled-components": "1.10.7",
