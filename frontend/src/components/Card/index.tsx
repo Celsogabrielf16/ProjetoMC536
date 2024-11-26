@@ -7,7 +7,7 @@ import AnimatedNumber from '../AnimatedNumber';
 type CardProps = {
   title: string;
   value: number;
-  relativeValue: number;
+  relativeValue?: number;
 };
 
 const formatStringH3 = (string: string): JSX.Element => {
@@ -26,21 +26,34 @@ const formatStringH3 = (string: string): JSX.Element => {
 };
 
 const Card: React.FC<CardProps> = ({ title, value, relativeValue }) => {
-    const percentage = Math.round((Math.abs(value - relativeValue) / relativeValue) * 100);
+  const percentage = relativeValue
+    ? Math.round((Math.abs(value - relativeValue) / relativeValue) * 100)
+    : 0;
 
-    return (
-        <div className="CardComponent">
-            { formatStringH3(title) }
-            <p className="card__value"><AnimatedNumber targetValue={value} duration={2500} /></p>
-            <div className="card__relative-value">
-                { value > relativeValue? 
-                    <p className="porcentage porcentage--green"><UpArrowRight /> { percentage } %</p> :
-                    <p className="porcentage"><DownArrowRight /> { percentage } %</p>
-                }
-                <p className="value"><AnimatedNumber targetValue={relativeValue} duration={2500} /></p>
-            </div>
+  return (
+    <div className="CardComponent">
+      {formatStringH3(title)}
+      <p className="card__value">
+        <AnimatedNumber targetValue={value} duration={2500} />
+      </p>
+      {relativeValue && (
+        <div className="card__relative-value">
+          {value > relativeValue ? (
+            <p className="porcentage porcentage--green">
+              <UpArrowRight /> {percentage} %
+            </p>
+          ) : (
+            <p className="porcentage">
+              <DownArrowRight /> {percentage} %
+            </p>
+          )}
+          <p className="value">
+            <AnimatedNumber targetValue={relativeValue} duration={2500} />
+          </p>
         </div>
-    )
-}
+      )}
+    </div>
+  );
+};
 
 export default Card;

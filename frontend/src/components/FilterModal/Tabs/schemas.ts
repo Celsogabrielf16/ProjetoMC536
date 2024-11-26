@@ -7,12 +7,16 @@ export const schema = Yup.object().shape({
     max: Yup.number(),
     type: Yup.number(),
     status: Yup.number(),
+    date: Yup.object().shape({
+      start: Yup.date(),
+      end: Yup.date(),
+    })
   }),
   company: Yup.object().shape({
     name: Yup.string(),
     cnpj: Yup.string()
   }),
-  localization: Yup.object().shape({
+  location: Yup.object().shape({
     name: Yup.string()
   }),
 })

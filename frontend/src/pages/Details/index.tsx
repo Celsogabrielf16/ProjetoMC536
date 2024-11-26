@@ -1,29 +1,48 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
 
 import * as Styled from './styles';
 import LineChart from 'src/components/LineChart';
+import { useGetWork } from 'src/hooks/work';
+import { format, parse } from 'date-fns';
 
-const toCurrency = (value: string) =>
-  parseFloat(
-    value
-      .replace(/[^0-9,-]+/g, '')
-      .replace('.', '')
-      .replace(',', '.')
-  );
+const formatDate = (date: string) => {
+  const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+  return format(parsedDate, 'dd/MM/yyyy');
+};
+
+const formatToCurrency = (value: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
+};
+
+function isBeforeToday(date: string) {
+  const inputDate = new Date(date);
+
+  const today = new Date();
+
+  today.setHours(0, 0, 0, 0);
+
+  return inputDate < today;
+}
 
 const Details: React.FC = () => {
-  const [params] = useSearchParams();
-  const workId = params.get('workId');
+  const { id = '' } = useParams();
+
+  const { data: work, isLoading } = useGetWork(id);
+
+  if (isLoading) {
+    return null;
+  }
+
+  console.log(work);
 
   const regex = /(R\$|\/)/g;
-  const ORCAMENTO = 'R$ 22.292.150,19';
-  const GASTO_REAL = 'R$ 12.292.150,19';
-  const DATA_INICIO = '16/10/2023';
-  const DATA_PREVISAO = '16/10/2024';
 
   const lineChartData = {
     title: 'Gasto Planejado & Gasto Real',
@@ -41,7 +60,17 @@ const Details: React.FC = () => {
       'Outubro 2024',
     ],
     data1: [
-      0, 150000, 350000, 650000, 790000, 900000, 980000, 1100000, 1200000,
+      0,
+      150000,
+      350000,
+      650000,
+      790000,
+      900000,
+      980000,
+      1100000,
+      (work?.orcamento ?? 0) < 950000
+        ? 950000
+        : (work?.orcamento ?? 0) + 100000,
     ],
     data2: [0, 350000, 550000, 590000, 780000, 790000, 800000, 850000, 950000],
   };
@@ -50,76 +79,63 @@ const Details: React.FC = () => {
     <>
       <Header />
       <Styled.Wrapper>
+        <h3>{work?.nome}</h3>
         <Styled.ContentRow>
           <Styled.ContentBox width="80%">
             <h3>Descrição</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              dignissim bibendum libero id congue. Vestibulum et lacus purus.
-              Mauris cursus laoreet risus, a laoreet lectus. Vestibulum non ex
-              eu orci posuere luctus at eget est. Morbi maximus neque nec sapien
-              finibus elementum. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Maecenas dignissim bibendum libero id congue.
-              Vestibulum et lacus purus. Mauris cursus laoreet risus, a laoreet
-              lectus. Vestibulum non ex eu orci posuere luctus at eget est.
-              Morbi maximus neque nec sapien finibus elementum.
-            </p>
+            <p>{work?.descricao}</p>
           </Styled.ContentBox>
           <Styled.ContentBox width="20%">
             <h3>Tipo</h3>
-            <p>Acessibilidade</p>
+            <p>{work?.tipo}</p>
             <h3>Status</h3>
-            <p>Andamento</p>
+            <p>{work?.status}</p>
           </Styled.ContentBox>
         </Styled.ContentRow>
         <Styled.ContentRow>
           <Styled.ContentBox>
             <h3>Orçamento</h3>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              {ORCAMENTO.split(regex).map((part) => (
-                <Styled.HighlightedText highlight={regex.test(part)}>
-                  {part}
-                </Styled.HighlightedText>
-              ))}
-            </div>
-          </Styled.ContentBox>
-          <Styled.ContentBox>
-            <h3>Gasto real</h3>
-            <div style={{ display: 'flex' }}>
-              {GASTO_REAL.split(regex).map((part) => (
-                <Styled.HighlightedText highlight={regex.test(part)}>
-                  {part}
-                </Styled.HighlightedText>
-              ))}
-              <span id="percentage">
-                {(
-                  (toCurrency(GASTO_REAL) / toCurrency(ORCAMENTO)) *
-                  100
-                ).toFixed(2)}{' '}
-                %
-              </span>
+              {formatToCurrency(Number(work?.orcamento))
+                .split(regex)
+                .map((part) => (
+                  <Styled.HighlightedText highlight={regex.test(part)}>
+                    {part}
+                  </Styled.HighlightedText>
+                ))}
             </div>
           </Styled.ContentBox>
           <Styled.ContentBox>
             <h3>Data de Início</h3>
             <div style={{ display: 'flex' }}>
-              {DATA_INICIO.split(regex).map((part) => (
-                <Styled.HighlightedText highlight={regex.test(part)}>
-                  {part}
-                </Styled.HighlightedText>
-              ))}
+              {formatDate(work?.data_inicio ?? '')
+                .split(regex)
+                .map((part) => (
+                  <Styled.HighlightedText highlight={regex.test(part)}>
+                    {part}
+                  </Styled.HighlightedText>
+                ))}
             </div>
           </Styled.ContentBox>
           <Styled.ContentBox>
             <h3>Data de Previsão</h3>
             <div style={{ display: 'flex' }}>
-              {DATA_PREVISAO.split(regex).map((part) => (
-                <Styled.HighlightedText highlight={regex.test(part)}>
-                  {part}
-                </Styled.HighlightedText>
-              ))}
+              {formatDate(work?.data_previsao ?? '')
+                .split(regex)
+                .map((part) => (
+                  <Styled.HighlightedText highlight={regex.test(part)}>
+                    {part}
+                  </Styled.HighlightedText>
+                ))}
             </div>
           </Styled.ContentBox>
+          {isBeforeToday(work?.data_previsao ?? '') &&
+            work?.status !== 'Concluída' && (
+              <Styled.ContentBox>
+                <h3>Em atraso</h3>
+                <p>Essa obra já devia ter sido finalizada.</p>
+              </Styled.ContentBox>
+            )}
         </Styled.ContentRow>
         <LineChart
           title={lineChartData.title}

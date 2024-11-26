@@ -65,6 +65,8 @@ export const Card = styled.div`
   
   padding: 24px;
   border-radius: 12px;
+
+  cursor: pointer;
 `;
 
 export const NameAndDescription = styled.div`

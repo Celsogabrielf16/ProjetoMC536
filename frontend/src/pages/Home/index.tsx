@@ -9,16 +9,31 @@ import filterIcon from 'src/assets/icons/filter.svg';
 import * as Styled from './styles';
 import Card from 'src/components/Card';
 import LineChart from 'src/components/LineChart';
-import LocalizationTable from 'src/components/LocalizationTable';
+import LocationTable from 'src/components/LocationTable';
 import BarChart from 'src/components/BarChart';
 import FilterModal, { SchemaType } from 'src/components/FilterModal';
 import List from './List';
+import { Work } from 'src/types';
+import { useGetWorks } from 'src/hooks/works';
 
 const Home: React.FC = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
+  const { data: OBRAS } = useGetWorks();
+
   const [filters, setFilters] = useState<SchemaType | null>(null);
-  console.log(filters);
+  const filteredWorksCount = filters
+    ? OBRAS?.filter((work) => {
+        if (
+          !work.nome
+            .toLowerCase()
+            .includes((filters.work.name || '').toLowerCase())
+        )
+          return false;
+
+        return true;
+      }).length
+    : null;
 
   const cardData1 = {
     title: 'Gasto Planejado em 2024',
@@ -32,26 +47,32 @@ const Home: React.FC = () => {
     relativeValue: 814666.0,
   };
 
-  const lineChartData = {
-    title: 'Gasto Planejado & Gasto Real',
-    label1: 'Planejado',
-    label2: 'Real',
-    labels: [
-      'Agosto 2023',
-      'Setembro 2023',
-      'Outubro 2023',
-      'Maio 2024',
-      'Junho 2024',
-      'Julho 2024',
-      'Agosto 2024',
-      'Setembro 2024',
-      'Outubro 2024',
-    ],
-    data1: [
-      0, 150000, 350000, 650000, 790000, 900000, 980000, 1100000, 1200000,
-    ],
-    data2: [0, 350000, 550000, 590000, 780000, 790000, 800000, 850000, 950000],
-  };
+  const labels1 = OBRAS?.map((obra) => obra.nome.trim()) ?? [];
+  const data1 = OBRAS?.map((obra) => obra.orcamento) ?? [];
+
+  const tiposContagem = OBRAS?.reduce((acc, item) => {
+    const tipo = item.tipo.trim();
+    if (!acc[tipo]) {
+      acc[tipo] = 0;
+    }
+    acc[tipo]++;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const TIPOS = Object.keys(tiposContagem ?? {});
+  const CONTAGEMTIPO = Object.values(tiposContagem ?? {});
+
+  const instContagem = OBRAS?.reduce((acc, item) => {
+    const loc = item.id_localizacao.trim();
+    if (!acc[loc]) {
+      acc[loc] = 0;
+    }
+    acc[loc]++;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const INST = Object.keys(instContagem ?? {});
+  const CONTAGEMINST = Object.values(instContagem ?? {});
 
   return (
     <>
@@ -61,7 +82,7 @@ const Home: React.FC = () => {
           {filters ? (
             <Styled.Title withP>
               Re<b>$</b>ultado da Bu<b>$</b>ca
-              <p>N Obras Encontradas</p>
+              <p>{filteredWorksCount} Obra(s) Encontrada(s)</p>
             </Styled.Title>
           ) : (
             <Styled.Title>
@@ -106,55 +127,52 @@ const Home: React.FC = () => {
             </Styled.Row>
             <Styled.Row>
               <LineChart
-                title={lineChartData.title}
-                label1={lineChartData.label1}
-                label2={lineChartData.label2}
-                labels={lineChartData.labels}
-                data1={lineChartData.data1}
-                data2={lineChartData.data2}
-                duration={5000}
-                delay={800}
-                width="800px"
+                title="Comparação de Orçamentos das Obras"
+                label1="Orçamento"
+                labels={labels1}
+                data1={data1}
+                data2={[]}
+                duration={500}
+                delay={0}
+                width="100%"
               />
-              <LocalizationTable
-                localizations={{
-                  IC: 9,
-                  IFGW: 2,
-                  IMECC: 4,
-                  IQ: 5,
-                  FEA: 6,
-                  FEEC: 8,
-                  IFCH: 6,
-                }}
+              <LocationTable
+                locations={
+                  OBRAS?.reduce((acc, obra) => {
+                    const id = obra.id_localizacao.trim();
+
+                    acc[id] = (acc[id] || 0) + 1;
+
+                    return acc;
+                  }, {} as Record<string, number>) || {}
+                }
               />
             </Styled.Row>
             <Styled.Row>
-              <LocalizationTable
-                localizations={{
-                  IC: 9,
-                  IFGW: 2,
-                  IMECC: 4,
-                  IQ: 5,
-                  FEA: 6,
-                  FEEC: 8,
-                  IFCH: 6,
-                }}
-              />
               <BarChart
-                title={lineChartData.title}
-                label1={lineChartData.label1}
-                label2={lineChartData.label2}
-                labels={lineChartData.labels}
-                data1={lineChartData.data1}
-                data2={lineChartData.data2}
+                title="Obras por Instituto"
+                label1="Instituto"
+                label2="Quantidade"
+                labels={INST}
+                data1={CONTAGEMINST}
                 duration={5000}
                 delay={800}
-                width="800px"
+                width="50%"
+              />
+              <BarChart
+                title="Obras por Tipo"
+                label1="Tipo"
+                label2="Quantidade"
+                labels={TIPOS}
+                data1={CONTAGEMTIPO}
+                duration={5000}
+                delay={800}
+                width="50%"
               />
             </Styled.Row>
           </>
         ) : (
-          <List works={['', '']} />
+          <List works={OBRAS} filters={filters} />
         )}
       </Styled.Wrapper>
       <Footer />
