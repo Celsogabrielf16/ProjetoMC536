@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 export const Wrapper =  styled.div`
   width: 400px;
-  height: 471px;
+  height: 100%;
+
+  overflow-y: auto;
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
   padding: 16px;
   background: var(--cor-charcoal);

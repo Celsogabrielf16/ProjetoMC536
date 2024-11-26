@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Modal from 'react-modal';
 import { atom, useAtom } from 'jotai';
 import * as Yup from 'yup';
@@ -9,7 +9,7 @@ import * as Styled from './styles';
 
 import Work from './Tabs/Work';
 import Company from './Tabs/Company';
-import Localization from './Tabs/Localization';
+import Location from './Tabs/Location';
 
 import { schema } from './Tabs/schemas';
 export type SchemaType = Yup.InferType<typeof schema>;
@@ -40,10 +40,19 @@ const FilterModal: React.FC<Props> = ({ isOpen, onClose, onSaveFilters }) => {
     mode: 'onChange',
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
+      bodyOpenClassName="modal-open"
       style={{
         overlay: {
           background: 'transparent',
@@ -81,7 +90,7 @@ const FilterModal: React.FC<Props> = ({ isOpen, onClose, onSaveFilters }) => {
 
             {currTab === 'Obra' && <Work />}
             {currTab === 'Empresa' && <Company />}
-            {currTab === 'Localização' && <Localization />}
+            {currTab === 'Localização' && <Location />}
 
             <Styled.Buttons>
               <Styled.Button

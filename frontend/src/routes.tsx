@@ -18,7 +18,7 @@ const ROUTES: RouteObject[] = [
     Component: Home,
   },
   {
-    path: '/details/:workId',
+    path: '/details/:id',
     Component: Details,
   },
   {

@@ -16,10 +16,24 @@ const Work: React.FC = () => {
         </Styled.InputBox>
         <Styled.InputBox>
           <span>Localização</span>
-          <Styled.Input {...register('localization.name')} />
+          <Styled.Input {...register('location.name')} />
         </Styled.InputBox>
       </Styled.Row>
       <Styled.Row>
+        <Styled.InputBox>
+          <span>Intervalo de Datas</span>
+          <Styled.InputBox flex>
+            <div style={{ width: '100%' }}>
+              <p>De</p>
+              <Styled.Input {...register('work.date.start')} />
+            </div>
+
+            <div style={{ width: '100%' }}>
+              <p>Até</p>
+              <Styled.Input {...register('work.date.end')} />
+            </div>
+          </Styled.InputBox>
+        </Styled.InputBox>
         <Styled.InputBox>
           <span>Intervalo de Orçamento</span>
           <Styled.InputBox flex>

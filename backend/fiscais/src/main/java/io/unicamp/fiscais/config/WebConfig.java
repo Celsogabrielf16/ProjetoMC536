@@ -16,8 +16,8 @@ public class WebConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("*") // Adjust the allowed origins as needed
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowedHeaders("*");
+                        // .allowCredentials(true);
             }
         };
     }

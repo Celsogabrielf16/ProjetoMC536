@@ -27,10 +27,10 @@ ChartJS.register(
 type LineChartProps = {
   title: string;
   label1: string;
-  label2: string;
+  label2?: string;
   labels: string[];
   data1: number[];
-  data2: number[];
+  data2?: number[];
   duration: number;
   delay: number;
   width?: string;
@@ -81,22 +81,31 @@ const LineChart: React.FC<LineChartProps> = ({
         borderWidth: 3,
         pointRadius: 2,
       },
-      {
-        label: label2,
-        data: data2,
-        borderColor: (ctx: any) => {
-          const canvas = ctx.chart.canvas;
-          const ctx2 = canvas.getContext('2d');
-          const gradient = ctx2.createLinearGradient(0, 0, canvas.width, 0);
-          gradient.addColorStop(0, '#00E5FF');
-          gradient.addColorStop(1, '#00BFFF');
-          return gradient;
-        },
-        fill: false,
-        tension: 0.4,
-        borderWidth: 3,
-        pointRadius: 2,
-      },
+      ...(label2 && data2
+        ? [
+            {
+              label: label2,
+              data: data2,
+              borderColor: (ctx: any) => {
+                const canvas = ctx.chart.canvas;
+                const ctx2 = canvas.getContext('2d');
+                const gradient = ctx2.createLinearGradient(
+                  0,
+                  0,
+                  canvas.width,
+                  0
+                );
+                gradient.addColorStop(0, '#00E5FF');
+                gradient.addColorStop(1, '#00BFFF');
+                return gradient;
+              },
+              fill: false,
+              tension: 0.4,
+              borderWidth: 3,
+              pointRadius: 2,
+            },
+          ]
+        : []),
     ],
   };
 
@@ -120,6 +129,7 @@ const LineChart: React.FC<LineChartProps> = ({
       },
       y: {
         beginAtZero: true,
+        stepSize: 1,
         ticks: {
           color: '#6A6A6A',
         },
@@ -128,9 +138,11 @@ const LineChart: React.FC<LineChartProps> = ({
   };
 
   return (
-    <div className="LineChartComponent" style={{ width }}>
+    <div className="LineChartComponent" style={{ width, minHeight: '100%' }}>
       {formatStringH3(title)}
-      <Line data={data} options={options} />
+      <Line data={data} options={options} style={{
+        minHeight: '90%'
+      }} />
     </div>
   );
 };
